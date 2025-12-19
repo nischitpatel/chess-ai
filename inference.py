@@ -6,6 +6,8 @@ def select_best_move(model, board_tensor, board_fen):
     model.eval()
 
     with torch.no_grad():
+        board_tensor = board_tensor.permute(2, 0, 1)
+
         logits = model(board_tensor.unsqueeze(0))[0]  # (4096,)
 
     legal_move_ids = get_legal_move_ids(board_fen)
@@ -18,7 +20,7 @@ def select_best_move(model, board_tensor, board_fen):
 
     return best_move_id
 
-from encode_move import decode_move
+# from encode_move import decode_move
 
-move_id = select_best_move(...)
-from_row, from_col, to_row, to_col = decode_move(move_id)
+# move_id = select_best_move(...)
+# from_row, from_col, to_row, to_col = decode_move(move_id)

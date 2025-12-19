@@ -1,7 +1,6 @@
 import chess
 import chess.pgn
 import numpy as np
-
 from encode_board import encode_board
 from encode_move import encode_move
 
@@ -20,6 +19,7 @@ def build_dataset(pgn_path, max_games=1000):
     y = []
 
     with open(pgn_path) as pgn:
+        print("Opened a file to build a dataset")
         for _ in range(max_games):
             game = chess.pgn.read_game(pgn)
             if game is None:

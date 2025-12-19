@@ -1,18 +1,20 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-
-from policy_net import PolicyNet
-from dataset import ChessDataset
+from .policy_net import PolicyNet
+from .dataset import ChessDataset
 
 def train_model(X, y, epochs=10, batch_size=64):
+    print("training: building pytorch dataset")
     dataset = ChessDataset(X, y)
+    print("training: loading pytorch dataset")
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
     model = PolicyNet()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     criterion = nn.CrossEntropyLoss()
 
+    print("Started epochs:")
     for epoch in range(epochs):
         total_loss = 0
 
