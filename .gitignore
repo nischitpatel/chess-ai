@@ -4,3 +4,5 @@
 /data
 /*.pth
 *.pth
+/bfg.jar
+/*.txt
